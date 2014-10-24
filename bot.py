@@ -8,7 +8,7 @@ import subprocess
 # Some basic variables used to configure the bot
 server = "chat.freenode.net"  # Server
 channel = "#makinacorpus"  # Channel
-botnick = "raspoutine-test"  # nickname
+botnick = "raspoutine"  # nickname
 
 
 def ping():  # This is our first function! It will respond to server Pings.
