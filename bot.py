@@ -57,9 +57,13 @@ while 1:  # Be careful with these! it might send you to an infinite loop
         subprocess.call(["git", "fetch"])
 
         # See if we have changes
-        commits = subprocess.check_output(["git", "log", "HEAD...master", "--pretty-format:%b"])
+        commits = subprocess.check_output(["git", "log", "master...origin/master", "--pretty=%s"])
+        if commits != '':
+            ircsock.send("PRIVMSG " + channel + " :Je reviens avec :\n" + commits + "\n")
 
-        # Pull latest content
-        subprocess.call(["git", "pull"])
-        # Reload script
-        execfile(__file__)
+            # Pull latest content
+            subprocess.call(["git", "pull"])
+            # Reload script
+            execfile(__file__)
+        else:
+            ircsock.send("PRIVMSG " + channel + " :Rien à faire...\n")
